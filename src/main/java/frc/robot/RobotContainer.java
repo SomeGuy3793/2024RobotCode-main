@@ -11,6 +11,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.Superstructure;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 
@@ -60,7 +61,8 @@ public class RobotContainer{
 
   //private final ShooterIntakeSubsystem m_shootingOrIntaking = new ShooterIntakeSubsystem();
   private final ClimberSubsystem m_climber = new ClimberSubsystem();
-  private final ArmSubsystemPID m_arm = new ArmSubsystemPID();
+  //private final ArmSubsystemPID m_armPID = new ArmSubsystemPID();
+  private final ArmSubsystem m_arm = ArmSubsystem.getInstance();
 
   // XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
   CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
@@ -94,12 +96,12 @@ public class RobotContainer{
                 true, false), // was true for ratelimit
             m_robotDrive));
 
-     m_arm.setDefaultCommand(
-      // Operator: left joystick arm control  
-        new RunCommand(       
-          () -> m_arm.set(-operatorStuff.kArmSpeed*
-              MathUtil.applyDeadband(m_operatorController.getLeftY(),
-              ArmConstants.kArmDeadband)),m_arm));
+    //  m_arm.setDefaultCommand(
+    //   // Operator: left joystick arm control  
+    //     new RunCommand(       
+    //       () -> m_arm.set(-operatorStuff.kArmSpeed*
+    //           MathUtil.applyDeadband(m_operatorController.getLeftY(),
+    //           ArmConstants.kArmDeadband)),m_arm));
 
   
             autoChooser = AutoBuilder.buildAutoChooser();
@@ -130,8 +132,14 @@ public class RobotContainer{
         m_operatorController.b().whileTrue(shooter.keepIn());
 
         // Move the arm to 2 radians above horizontal when the 'A' button is pressed.
-        m_operatorController.start().onTrue(m_arm.setArmGoalCommand(Units.degreesToRadians(30))); // --> change the radian 
-        m_operatorController.back().onTrue(m_arm.setArmGoalCommand(Units.degreesToRadians(30)));
+
+
+
+        // m_operatorController.start().onTrue(m_arm.setArmGoalCommand(Units.degreesToRadians(30))); // --> change the radian 
+        // m_operatorController.back().onTrue(m_arm.setArmGoalCommand(Units.degreesToRadians(30)));
+
+
+
         //left joystick charge up, press a button to move note in --> transfered to joystick controls 
         //  m_operatorController.x().whileTrue(m_arm.armClockWise());
         //  m_operatorController.y().whileTrue(m_arm.armCounterClockWise());
