@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ArmSubsystem {
+    
 
     public static CANSparkMax m_leftArm;
     public static CANSparkMax m_rightArm; 
@@ -48,7 +49,7 @@ public class ArmSubsystem {
       m_rightArm.setIdleMode(IdleMode.kBrake);
     }
     
-    
+
     
     public static ArmSubsystem getInstance() {
         if (m_Instance == null) {

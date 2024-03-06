@@ -37,17 +37,17 @@ import edu.wpi.first.wpilibj2.command.Commands;
 
 
 public class ArmSubsystemPID extends TrapezoidProfileSubsystem{
-    private CANSparkMax m_leftArm = new CANSparkMax(operatorStuff.kArmLeft_ID, MotorType.kBrushless);
-    private CANSparkMax m_rightArm = new CANSparkMax(operatorStuff.kArmRight_ID, MotorType.kBrushless);
+    private static CANSparkMax m_leftArm = new CANSparkMax(operatorStuff.kArmLeft_ID, MotorType.kBrushless);
+    private static CANSparkMax m_rightArm = new CANSparkMax(operatorStuff.kArmRight_ID, MotorType.kBrushless);
     
-    private final RelativeEncoder m_leftArmEncoder;
-    private final RelativeEncoder m_rightArmEncoder;
-    private final SparkPIDController m_pid;
+    private static RelativeEncoder m_leftArmEncoder;
+    private static RelativeEncoder m_rightArmEncoder;
+    private static SparkPIDController m_pid;
 
-    private final ArmFeedforward m_feedforward = new ArmFeedforward(ArmConstants.kSVolts, ArmConstants.kGVolts,ArmConstants.kVVoltSecondPerRad, ArmConstants.kAVoltSecondSquaredPerRad);
-    private double m_goal = ArmConstants.kArmOffsetRads; 
+    private static ArmFeedforward m_feedforward = new ArmFeedforward(ArmConstants.kSVolts, ArmConstants.kGVolts,ArmConstants.kVVoltSecondPerRad, ArmConstants.kAVoltSecondSquaredPerRad);
+    private static double m_goal = ArmConstants.kArmOffsetRads; 
     // used to limit acceleration so arm doesn't die 
-    private final SlewRateLimiter m_armSlew = new SlewRateLimiter(ArmConstants.kArmSlewRate); // add arm slew rate to constants file 
+    private static SlewRateLimiter m_armSlew = new SlewRateLimiter(ArmConstants.kArmSlewRate); // add arm slew rate to constants file 
 
     public ArmSubsystemPID() {
     super(
@@ -171,7 +171,7 @@ public class ArmSubsystemPID extends TrapezoidProfileSubsystem{
 //       m_leftArm.set(-speed);
 //       m_rightArm.set(speed);
 //     }
-    public void stop(){
+    public static void stop(){
       m_leftArm.set(0);
       m_rightArm.set(0);
     }
@@ -195,11 +195,11 @@ public class ArmSubsystemPID extends TrapezoidProfileSubsystem{
                          ControlType.kPosition, 0, feedforward);
     }
     
-    public Command setArmGoalCommand(double goal) {
-    return Commands.runOnce(() -> setArmGoal(goal), this);
+    public static Command setArmGoalCommand(double goal) {
+    return Commands.runOnce(() -> setArmGoal(goal));
     }
 
-    public void set(double speed) {
+    public static void set(double speed) {
       m_leftArm.set(m_armSlew.calculate(speed));
     }
 
@@ -209,33 +209,33 @@ public class ArmSubsystemPID extends TrapezoidProfileSubsystem{
 //                  ()->(Math.abs(speed) < ArmConstants.kArmDeadband));
 // }
 
-public double getPositionRadians() {
+public static double getPositionRadians() {
   return m_leftArmEncoder.getPosition(); // + ArmConstants.kArmOffsetRads;
 }
 
-public Command setArmManual(DoubleSupplier speed) {
-  return Commands.run(()->setArmGoal(getArmGoal()+speed.getAsDouble()/(2*Math.PI)),this);
+public static Command setArmManual(DoubleSupplier speed) {
+  return Commands.run(()->setArmGoal(getArmGoal()+speed.getAsDouble()/(2*Math.PI)));
 }
 
-public double getArmGoal() {
+public static double getArmGoal() {
   return m_goal;
 }
 
-public void setArmGoal(double goal) {
+public static void setArmGoal(double goal) {
   m_goal = MathUtil.clamp(goal,ArmConstants.kArmOffsetRads-0.1,ArmConstants.kArmMaxRads+0.1);
 }
 
-public void resetDownPosition() {
+public static void resetDownPosition() {
   m_leftArmEncoder.setPosition(ArmConstants.kArmOffsetRads);
   m_goal = ArmConstants.kArmOffsetRads;
 }
 
-public void resetUpPosition() {
+public static void resetUpPosition() {
   m_leftArmEncoder.setPosition(ArmConstants.kArmMaxRads);
   m_goal = ArmConstants.kArmMaxRads;
 }
 
-public void setEncoderPosition(double position) {
+public static void setEncoderPosition(double position) {
   m_leftArmEncoder.setPosition(position);
 }
 

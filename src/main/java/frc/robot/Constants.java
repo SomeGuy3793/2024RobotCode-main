@@ -7,6 +7,7 @@ package frc.robot;
 // https://software-metadata.revrobotics.com/REVLib-2024.json
 import com.revrobotics.CANSparkBase.IdleMode;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -69,6 +70,8 @@ public final class Constants {
     public static final double kI = 0;
     public static final double kD = 0.00002194;
 
+    
+
     public static final double kDVel = 0;
     public static final double kFF = 0;
     public static final double kMinOutput = -1;
@@ -83,6 +86,9 @@ public final class Constants {
     //public static final double kMaxArmSpeed = 0.2; 
     public static final double kArmSlewRate = 2;
     public static final double kArmDeadband = 0.1;
+    public static PIDController armPID(double kp2, double ki2, double kd2) {
+      return null;
+    }
   }
 
   public static final class operatorStuff{
