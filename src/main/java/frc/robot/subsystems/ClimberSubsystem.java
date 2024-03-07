@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 //import edu.wpi.first.wpilibj.TimedRobot;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
 import frc.robot.Constants.desiredEncoderValue;
 import frc.robot.Constants.operatorStuff;
 // https://software-metadata.revrobotics.com/REVLib-2024.json
@@ -30,12 +29,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimberSubsystem extends SubsystemBase{
    
-    private CANSparkMax m_leftClimber = new CANSparkMax(Constants.operatorStuff.kArmLeft_ID, MotorType.kBrushless);
-    private CANSparkMax m_rightClimber = new CANSparkMax(Constants.operatorStuff.kArmRight_ID, MotorType.kBrushless);
+    private CANSparkMax m_leftClimber = new CANSparkMax(operatorStuff.kClimberLeft_ID, MotorType.kBrushless);
+    private CANSparkMax m_rightClimber = new CANSparkMax(operatorStuff.kClimberRight_ID, MotorType.kBrushless);
     RelativeEncoder climberEncoderLeft=m_leftClimber.getEncoder(SparkRelativeEncoder.Type.kHallSensor,42);
     RelativeEncoder climberEncoderRight=m_rightClimber.getEncoder(SparkRelativeEncoder.Type.kHallSensor,42);
 
 public ClimberSubsystem(){
+
     m_leftClimber.setIdleMode(IdleMode.kBrake);
     m_rightClimber.setIdleMode(IdleMode.kBrake);
 

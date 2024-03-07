@@ -7,7 +7,6 @@ package frc.robot;
 // https://software-metadata.revrobotics.com/REVLib-2024.json
 import com.revrobotics.CANSparkBase.IdleMode;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -70,8 +69,6 @@ public final class Constants {
     public static final double kI = 0;
     public static final double kD = 0.00002194;
 
-    
-
     public static final double kDVel = 0;
     public static final double kFF = 0;
     public static final double kMinOutput = -1;
@@ -86,34 +83,33 @@ public final class Constants {
     //public static final double kMaxArmSpeed = 0.2; 
     public static final double kArmSlewRate = 2;
     public static final double kArmDeadband = 0.1;
-    public static PIDController armPID(double kp2, double ki2, double kd2) {
-      return null;
-    }
   }
 
   public static final class operatorStuff{
 
-    public static final int kTop_ID=35;
-    public static final int kBot_ID=36;
+    public static final int kTop_ID=41;
+    public static final int kBot_ID=42;
 
-    public static final int kIntake_ID=33;
+    public static final int kIntake_ID=43;
 
-    public static final int kClimberLeft_ID=31;
-    public static final int kClimberRight_ID=0;
+    public static final int kClimberLeft_ID=46;
+    public static final int kClimberRight_ID=47;
 
-    public static final int kArmLeft_ID=32;
-    public static final int kArmRight_ID=34;
-
-    public static final double kShootingSpeed=.9;
-    public static final double kIntakeToShootingSpeed=.9;
+    public static final int kArmLeft_ID=44;
+    public static final int kArmRight_ID=45;
 
 
     public static final double kKeepNoteInSpeed=0.20;
 
-    public static final double kIntakeSpeed=.45;
     public static final double kArmSpeed=.30;
     public static final double kClimberSpeed=.20;
     public static final double kIdleSpeed=0;
+  }
+
+  public static final class IntakeShooter{
+    public static final double kShootingSpeed=.75;
+    public static final double kIntakeToShootingSpeed=.9;
+    public static final double kIntakeSpeed=.45;
   }
 
   public static final class Swerve {
@@ -207,7 +203,6 @@ public final class Constants {
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = kTurningEncoderPositionFactor; // radians
 
-    // generic: p = 0.4
     public static final double kDrivingP = 0.4;
     public static final double kDrivingI = 0;
     public static final double kDrivingD = 0;
@@ -215,7 +210,6 @@ public final class Constants {
     public static final double kDrivingMinOutput = -1;
     public static final double kDrivingMaxOutput = 1;
 
-    // generic: p = 1.0
     public static final double kTurningP = 1;
     public static final double kTurningI = 0;
     public static final double kTurningD = 0;
