@@ -231,6 +231,6 @@ public class RobotContainer{
     NamedCommands.registerCommand("Arm Speaker", new setArm(m_arm, Constants.desiredEncoderValue.kSpeakerArmAngle));
     NamedCommands.registerCommand("Arm Intake", new setArm(m_arm, Constants.desiredEncoderValue.kIntakeArmAngle));
     NamedCommands.registerCommand("Sensor Detect Stop", new DetectNote(m_intake));
-
+//a
   }
 }
