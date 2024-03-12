@@ -31,10 +31,14 @@ import com.pathplanner.lib.util.ReplanningConfig;
  */
 public final class Constants {
 
+    public static final class VisionConstants{
+      
+    }
+
     public static final class desiredEncoderValue {
-    public static final double kSpeakerArmAngle=0;
+    public static final double kSpeakerArmAngle=5;
     public static final double kAmpArmAngle=0;
-    public static final double kIntakeArmAngle=0;
+    public static final double kIntakeArmAngle=2;
 
     public static final double kClimberPositionTop=0;
     public static final double kClimberPositionBottom=0;
@@ -63,7 +67,8 @@ public final class Constants {
     public static final double kArmEncoderPositionPIDMinInput = kArmOffsetRads; // radians
     public static final double kArmEncoderPositionPIDMaxInput = (1.5 * Math.PI); // Guess 
     public static final int kArmMotorCurrentLimit = 40; // amps
-    // CHANGE 
+    
+    // Need to calculate these 
     public static final double kP = 0.78697; //10000x
     public static final double kPVel = 5.534E-11;
     public static final double kI = 0;
@@ -83,6 +88,10 @@ public final class Constants {
     //public static final double kMaxArmSpeed = 0.2; 
     public static final double kArmSlewRate = 2;
     public static final double kArmDeadband = 0.1;
+  }
+
+  public static final class ClimberConstants{
+    public static final double kClimberSpeed = 0.5; 
   }
 
   public static final class operatorStuff{
@@ -107,16 +116,18 @@ public final class Constants {
   }
 
   public static final class IntakeShooter{
-    public static final double kShootingSpeed=.75;
-    public static final double kIntakeToShootingSpeed=.9;
-    public static final double kIntakeSpeed=.45;
+    public static final double kShootingSpeed=.85;
+    public static final double kTopShootSpeed = .85;
+    public static final double kBottomShootSpeed = .85; 
+    public static final double kIntakeToShootingSpeed=.75;
+    public static final double kIntakeSpeed=.4;
   }
 
   public static final class Swerve {
     // Chassis configuration
-    public static final double kTrackWidth = Units.inchesToMeters(27); // 1/29/23
+    public static final double kTrackWidth = Units.inchesToMeters(22.5); // 3/9/23
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = Units.inchesToMeters(27);
+    public static final double kWheelBase = Units.inchesToMeters(22.5);
     public static final Translation2d flModule = new Translation2d(kWheelBase / 2, kTrackWidth / 2);
     public static final Translation2d frModule = new Translation2d(kWheelBase / 2, -kTrackWidth / 2);
     public static final Translation2d blModule = new Translation2d(-kWheelBase / 2, kTrackWidth / 2);
@@ -129,7 +140,6 @@ public final class Constants {
       flModule.getNorm(),
       new ReplanningConfig()
     );
-//module
   }
 
   public static final class DriveConstants {
@@ -143,9 +153,9 @@ public final class Constants {
     public static final double kRotationalSlewRate = 1.0; // percent per second (1 = 100%) was 2.0 tested .25
 
     // Chassis configuration
-    public static final double kTrackWidth = Units.inchesToMeters(27); // 1/29/23
+    public static final double kTrackWidth = Units.inchesToMeters(22.7); // 1/29/23
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = Units.inchesToMeters(27);
+    public static final double kWheelBase = Units.inchesToMeters(22.7);
     // Distance between front and back wheels on robot
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
         new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -203,14 +213,14 @@ public final class Constants {
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = kTurningEncoderPositionFactor; // radians
 
-    public static final double kDrivingP = 0.4;
+    public static final double kDrivingP = .3;
     public static final double kDrivingI = 0;
     public static final double kDrivingD = 0;
     public static final double kDrivingFF = 1 / kDriveWheelFreeSpeedRps;
     public static final double kDrivingMinOutput = -1;
     public static final double kDrivingMaxOutput = 1;
 
-    public static final double kTurningP = 1;
+    public static final double kTurningP = .4;
     public static final double kTurningI = 0;
     public static final double kTurningD = 0;
     public static final double kTurningFF = 0;
@@ -228,13 +238,13 @@ public final class Constants {
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
     public static final int kOperatorControllerPort = 1;
-    public static final double kDriveDeadband = 4;
+    public static final double kDriveDeadband = .2;
     public static final double kNoteShotDeadband = .2;
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3.0;  //was 3.0 tested 0.5
-    public static final double kMaxAccelerationMetersPerSecondSquared = 3.0; //was 3.0, .25 tested
+    public static final double kMaxSpeedMetersPerSecond = 1.0;  
+    public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; 
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI; // was just pi tested PI / 8
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI; //was just pi tested PI/64
 

@@ -5,16 +5,19 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class SetShooterSpeed extends InstantCommand{
     private final ShooterSubsystem m_shooter; 
-    private final double m_speed; 
+    private final double m_topSpeed; 
+    private final double m_bottomSpeed; 
 
-    public SetShooterSpeed(ShooterSubsystem shooter, double speed){
+    public SetShooterSpeed(ShooterSubsystem shooter, double topSpeed, double bottomSpeed){
         m_shooter = shooter; 
-        m_speed = speed; 
+        m_topSpeed = topSpeed; 
+        m_bottomSpeed = bottomSpeed;  
         addRequirements(m_shooter);
     }
 
     public void initialize(){
-        m_shooter.setShooterSpeed(m_speed);
+        m_shooter.setBottomShooterSpeed(m_bottomSpeed);
+        m_shooter.setTopShooterSpeed(m_topSpeed);
     }
     
 }

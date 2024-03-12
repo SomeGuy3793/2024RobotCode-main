@@ -19,24 +19,18 @@ public class ShooterSubsystem extends SubsystemBase{
         m_bottomShooter.setIdleMode(IdleMode.kBrake);
     }
 
-    public void shootIn(double speed){
-        m_topShooter.set(speed);
-        m_bottomShooter.set(speed);
-
-        SmartDashboard.putNumber("top shooter speed", speed);
-        SmartDashboard.putNumber("bottom shooter speed", speed);
-    }
-
-       public void shootOut(double speed){
-        m_topShooter.set(-speed);
-        m_bottomShooter.set(-speed);
-
-        SmartDashboard.putNumber("top shooter speed", -speed);
-        SmartDashboard.putNumber("bottom shooter speed", -speed);
-    }
+   
 
     public void setShooterSpeed(double speed){
         m_topShooter.set(speed);
+        m_bottomShooter.set(speed);
+    }
+
+    public void setTopShooterSpeed(double speed){
+        m_topShooter.set(speed);
+    }
+
+    public void setBottomShooterSpeed(double speed){
         m_bottomShooter.set(speed);
     }
 
